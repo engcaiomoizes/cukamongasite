@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cukamonga Site - Controle</title>
-    @vite(['resources/js/app.js'])
-    @vit(['resources/css/app.css'])
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="container-login">
