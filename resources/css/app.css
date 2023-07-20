@@ -1,0 +1,191 @@
+@font-face {
+    font-family: 'Nexa Bold';
+    src: url('/fonts/Nexa_Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Nexa Light';
+    src: url('/fonts/Nexa_Light.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Nexa';
+    src: url('/fonts/Nexa_Light.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Nexa';
+    src: url('/fonts/Nexa_Bold.otf') format('opentype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/fonts/OpenSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+:root {
+    --primary-color: #ffca05;
+    --secondary-color: #444243;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+header span {
+    font-size: 14px;
+}
+
+.menu {
+    background-color: var(--secondary-color);
+    height: 50px;
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 10px 0;
+}
+
+.menu ul li {
+    display: inline;
+    line-height: 30px;
+    box-sizing: border-box;
+    margin: 0 10px;
+    padding: 0 !important;
+}
+
+.menu ul li a {
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Nexa Bold';
+    padding: 0 10px;
+}
+
+.menu ul li a:hover {
+    border-bottom: 3px solid #fff;
+    transition: 0.1s;
+}
+
+.menu ul input {
+    position: absolute;
+    right: 20px;
+    height: 30px;
+    line-height: 30px;
+    width: 300px;
+    border: none;
+    padding: 0 10px;
+    border-radius: 4px;
+    color: black;
+    font-family: 'Nexa';
+}
+
+.menu ul input:focus {
+    outline: 0;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    height: 26px;
+    bottom: 0;
+    right: 0;
+    padding: 2px 10px;
+    background-color: var(--secondary-color);
+    text-align: center;
+    z-index: 3;
+}
+
+footer span {
+    font-family: 'Nexa';
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: 4px;
+}
+
+.span-left {
+    left: 20px !important;
+}
+
+.span-right {
+    right: 20px !important;
+}
+
+.container-login {
+    width: 100vw;
+    height: 100vh;
+    background: #6C7A89;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-login {
+    width: 300px;
+    height: 320px;
+    background: #fff;
+    border-top: 10px solid #1BA39C;
+    text-align: center;
+    font-family: 'Nexa Bold' !important;
+    padding: 40px 20px 0 20px;
+}
+
+.form-login h1 {
+    margin-bottom: 20px;
+}
+
+.form-login input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #EEEEEE;
+    border: 1px solid #EEEEEE;
+    color: var(--secondary-color);
+    font-family: 'Nexa';
+    font-size: 16px;
+}
+
+.form-login input[type=submit] {
+    background-color: #1BA39C;
+    border: 1px solid #1BA39C;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    /* letter-spacing: 1px; */
+}
+
+.form-login input:hover {
+    /*  */
+}
+
+.form-login input:focus {
+    outline: 0;
+}
+
+.form-login span {
+    font-family: 'Nexa';
+    color: var(--secondary-color);
+    font-size: 14px;
+}
