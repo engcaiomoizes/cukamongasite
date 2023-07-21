@@ -9,13 +9,17 @@
 </head>
 <body>
     <div class="container-login">
-        <div class="form-login">
+        <form class="form-login" method="POST" action="/controle/login">
+            @if(session('msg'))
+                <span>{{ session('msg') }}</span>
+            @endif
+            @csrf
             <h1>Login</h1>
             <input type="text" name="login" id="login" placeholder="Informe seu Login">
             <input type="password" name="senha" id="senha" placeholder="Informe sua Senha">
             <input type="submit" value="Entrar">
             <span>Esqueceu sua senha? <a href="#">Clique aqui</a></span>
-        </div>
+        </form>
     </div>
 </body>
 </html>

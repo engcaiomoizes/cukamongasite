@@ -131,6 +131,16 @@ footer span {
     right: 20px !important;
 }
 
+.container {
+    width: 100%;
+    position: relative;
+    display: block;
+    height: auto;
+    top: 50px;
+    padding: 60px;
+    background-color: #140B42;
+}
+
 .container-login {
     width: 100vw;
     height: 100vh;
@@ -188,4 +198,103 @@ footer span {
     font-family: 'Nexa';
     color: var(--secondary-color);
     font-size: 14px;
+}
+
+.container-title {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.container-title h1 {
+    /* border-bottom: 3px solid #000; */
+    font-size: 26px;
+    font-family: 'Nexa Bold';
+    color: white;
+}
+
+.tags {
+    font-family: 'Nexa';
+    background-color: rgba(255,255,255,0.2);
+    padding: 8px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.tags p {
+    font-size: 14px;
+    color: white;
+}
+
+.row {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin: 0;
+    -webkit-box-align: start;
+    align-items: flex-start;
+}
+
+.left {
+    display: flex;
+    min-width: 764px;
+    max-width: 764px;
+    margin-right: 40px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Nexa';
+}
+
+.links {
+    padding: 20px 0;
+    border-top: 1px solid #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Nexa';
+}
+
+.links .box {
+    width: 600px;
+    border: 6px solid #1BA39C;
+    border-radius: 10px;
+}
+
+.links .box h2 {
+    background-color: #1BA39C;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 2px;
+}
+
+.links .box table {
+    border: 1px solid #000;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.links .box table tr {
+    border: 1px solid #1BA39C;
+}
+
+.links .box table tr td {
+    margin: 0;
+    text-align: center;
+    color: var(--secondary-color);
+    border: 1px solid #1BA39C;
+    padding: 4px;
+}
+
+@media only screen and (max-width: 1247px) {
+    .left {
+        min-width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+    }
+
+    .links .box {
+        width: 90%;
+    }
 }

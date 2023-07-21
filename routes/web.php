@@ -24,3 +24,8 @@ Route::get('/contato', function () {
 });
 
 Route::get('/controle', [ControleController::class, 'index']);
+Route::post('/controle/login', [ControleController::class, 'store']);
+
+Route::get('/{url}', function ($url) {
+    return view('detalhes', ['url' => $url]);
+});
