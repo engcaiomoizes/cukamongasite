@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('controle', function (Blueprint $table) {
+        Schema::create('generos', function (Blueprint $table) {
             $table->id();
-            $table->string('login', 25)->unique();
-            $table->string('senha', 255);
-            $table->string('nome', 60);
-            $table->string('foto', 60);
-            $table->timestamps();
+            $table->string('titulo', 30);
+            $table->string('urlamigavel', 30);
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('controle');
+        Schema::dropIfExists('generos');
     }
 };

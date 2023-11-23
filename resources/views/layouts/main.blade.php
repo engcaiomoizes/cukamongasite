@@ -11,10 +11,14 @@
     <header>
         <div class="menu">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Filmes</a></li>
-                <li><a href="#">Séries</a></li>
-                <input type="text" name="pesquisa" id="pesquisa" placeholder="Informe a sua pesquisa...">
+                <li><a href="/">Home</a></li>
+                <li><a href="/filmes">Filmes</a></li>
+                <li><a href="/series">Séries</a></li>
+                <li><a href="/jogos">Jogos</a></li>
+                <form class="form-pesquisa" action="/pesquisar" method="POST">
+                    @csrf
+                    <input type="text" name="pesquisa" id="pesquisa" placeholder="Informe a sua pesquisa...">
+                </form>
             </ul>
         </div>
     </header>

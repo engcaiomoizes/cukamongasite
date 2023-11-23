@@ -1,0 +1,296 @@
+:root {
+    --primary-color: #ffca05;
+    --secondary-color: #444243;
+    --menu-color: #2F323B;
+    --background-color: #140B42;
+    --button-color: #1BA39C;
+    --secondary-button-color: #04AA6D;
+}
+
+.dashboard {
+    /*  */
+}
+
+.dashboard menu {
+    width: 250px;
+    border: 1px solid #000;
+    background-color: var(--menu-color);
+    font-family: 'Nexa';
+    padding: 0 0 20px 0;
+    position: fixed;
+    height: 100%;
+    z-index: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    flex: 1;
+    flex-basis: 50%;
+}
+
+.dashboard menu .options {
+    width: 100%;
+    height: 30px;
+    background-color: rgba(0,0,0,.6);
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    padding: 4px 14px;
+}
+
+.dashboard menu .options a {
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    right: 14px;
+    top: 6px;
+}
+
+.dashboard menu .options h4 {
+    color: white;
+    line-height: 1.4;
+}
+
+.dashboard menu ul {
+    list-style: none;
+    /* border: 1px solid #000; */
+    width: 100%;
+}
+
+.dashboard menu .foto {
+    background-color: #aaa;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.dashboard menu .foto img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.dashboard menu h3 {
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.dashboard menu ul li {
+    color: white;
+    /* border: 1px solid #000; */
+}
+
+.dashboard menu ul li a {
+    color: white;
+    cursor: pointer;
+    padding: 14px 20px;
+    width: 100%;
+    /* border: 1px solid white; */
+    display: block;
+}
+
+.dashboard menu ul li a:hover {
+    background-color: var(--button-color);
+    transition: .2s ;
+}
+
+.container-dashboard {
+    width: calc(100% - 250px);
+    position: relative;
+    display: block;
+    height: auto;
+    left: 250px;
+    padding: 60px;
+}
+
+.container-dashboard table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'Nexa';
+    margin-top: 10px;
+}
+
+.container-dashboard table td, .container-dashboard table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.container-dashboard table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.container-dashboard table tr:hover {
+    background-color: #ddd;
+}
+
+.container-dashboard table th {
+    padding: 12px 8px;
+    text-align: left;
+    background-color: var(--button-color);
+    color: white;
+}
+
+.container-dashboard table td {
+    /*  */
+}
+
+.container-dashboard table td a {
+    color: var(--menu-color);
+}
+
+.container-dashboard .box {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255,255,255,.6);
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px 2px rgba(0,0,0,.2);
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    font-family: 'Nexa';
+    margin: 20px;
+}
+
+.container-dashboard .box h1, .container-dashboard .box h2 {
+    width: 100%;
+}
+
+.container-dashboard .box h1 {
+    font-size: 60px;
+}
+
+.container-dashboard .box h2 {
+    font-size: 30px;
+    font-weight: normal;
+}
+
+.btn-primary {
+    width: 150px;
+    height: 40px;
+    background-color: var(--button-color);
+    border: 2px solid var(--button-color);
+    color: white;
+    font-family: 'Nexa';
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: rgba(0,0,0,0);
+    color: var(--button-color);
+    transition: .2s;
+}
+
+.form-cadastro {
+    /* border: 1px solid #000; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nexa';
+}
+
+.form-cadastro .form-control {
+    /* border: 1px solid #000; */
+    padding: 10px;
+    display: flex;
+    width: 100%;
+}
+
+.form-cadastro .form-control label {
+    /* border: 1px solid #000; */
+    width: 20%;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.form-cadastro label {
+    line-height: 30px;
+    width: 100%;
+}
+
+.form-cadastro input[type=text], .form-cadastro input[type=password] {
+    width: 500px;
+    height: 30px;
+    border: 2px solid var(--menu-color);
+    border-radius: 6px;
+    background-color: rgba(255,255,255,.6);
+}
+
+.fade, .modal {
+    transition: 0.5s;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 5;
+}
+
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 10;
+    width: 700px;
+    max-width: 90%;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    font-family: 'Nexa';
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+}
+
+.modal.hide, .fade.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.open-modal {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.form-cadastro.hide, .links-data.hide {
+    display: none;
+}
+
+.separator {
+    border-bottom: 1px solid #ccc;
+}

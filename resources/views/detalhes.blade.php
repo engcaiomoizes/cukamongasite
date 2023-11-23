@@ -1,16 +1,25 @@
 @extends('layouts.main')
 
-@section('title', 'Cukamonga Caio')
+@section('title', 'Cukamonga Site')
 
 @section('imports')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="/css/content.css">
+<script src="https://kit.fontawesome.com/99b07ad12a.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="/js/scripts.js" defer></script>
 @endsection
 
 @section('content')
 <div class="container-title">
-    <h1>The Flash (2023)</h1>
-    <div class="tags">
-        <p>1080p, filme, 2023, Flash, Aventura</p>
+    <h1>{{ $filme->titulo }}</h1>
+    <div class="marcadores">
+        <p>
+            <i class="fa-solid fa-tags"></i>
+            @foreach(explode(',', $filme->tags) as $tag)
+                <a style="color: #fff;" href="/?s={{ $tag }}">{{ $tag }}</a>,
+            @endforeach
+        </p>
     </div>
 </div>
 <div class="row">
@@ -18,12 +27,12 @@
         <div class="content">
             <div class="seals">
                 <div class="favorite">
-                    <i class="icon-star"></i>
+                    <i class="fa-solid fa-star"></i>
                     <strong>Ctrl+D</strong>
                     <span>para adicionar aos favoritos</span>
                 </div>
                 <div class="attention">
-                    <i class="icon-attention"></i>
+                    <i class="fa-solid fa-triangle-exclamation"></i>
                     <strong>Link Off?</strong>
                     <span>nos avise nos comentários</span>
                 </div>
@@ -36,50 +45,204 @@
                     <p style="text-align: left;">
                         <strong><span style="color: #0000ff;">
                             <a style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;" target="_blank" rel="nofollow">
-                                <img decoding="async" loading="lazy" class="" style="border-radius: 10px; border: 0px none;" title="The Flash" src="/img/capa-filme.jpg" alt="#" width="260" height="382" border="0">
+                                <img decoding="async" loading="lazy" class="" style="border-radius: 10px; border: 0px none;" title="{{ $filme->titulo }}" src="/img/{{ $filme->foto }}" alt="#" width="260" height="382" border="0">
                             </a>
                             »INFORMAÇÕES«
                         </span></strong><br>
-                        <b>Título Traduzido:</b>&nbsp;The Flash<b><br>
-                        Titulo Original:</b>&nbsp;The Flash<br>
-                        <strong>Lançamento</strong>:&nbsp;<a href="/2023/" target="_blank">2023</a><br>
-                        <b>Gênero</b>: Ação | Aventura | Ficção<br>
-                        <b>Formato:</b>&nbsp;MKV<br>
-                        <b>Qualidade:</b>&nbsp;WEB-DL<br>
-                        <b>Idioma</b>: Português | Inglês<br>
-                        <strong>Legenda</strong>: Português<br>
-                        <b>Tamanho:</b>&nbsp;3.66 GB |&nbsp;7.63&nbsp;GB | 25 GB<br>
-                        <b>Duração:</b>&nbsp;2h 24 Min.<br>
-                        <b>Qualidade Áudio e Vídeo:</b> 10<br>
-                        <b>Servidor:&nbsp;</b>Torrent<br>
-                        <span style="color: #008000;"><strong>ADICIONADO DUAL ÁUDIO 10/10!</strong></span>
+                        <b>Título Original:</b>&nbsp;{{ $filme->titulo_original }}<b><br>
+                        Titulo Traduzido:</b>&nbsp;{{ $filme->titulo_traduzido }}<br>
+                        <strong>Lançamento</strong>:&nbsp;<a href="/{{ $filme->lancamento }}">{{ $filme->lancamento }}</a><br>
+                        <b>Gênero</b>: @foreach($generos as $genero) <a href="/{{ $genero->urlamigavel }}">{{ $genero->titulo }}</a> | @endforeach<br>
+                        <b>Formato:</b>&nbsp;{{ $filme->formato }}<br>
+                        <b>Qualidade:</b>&nbsp;{{  $filme->qualidade }}<br>
+                        <b>Idioma</b>: {{ $filme->idioma }}<br>
+                        <strong>Legenda</strong>: {{ $filme->legenda }}<br>
+                        <b>Tamanho:</b>&nbsp;{{ $filme->tamanho }}<br>
+                        <b>Duração:</b>&nbsp;{{ $filme->duracao }} min.<br>
+                        <b>Qualidade de Vídeo:</b> {{ $filme->qualidade_video }}<br>
+                        <b>Qualidade de Áudio:</b> {{ $filme->qualidade_audio }}<br>
+                        <b>Servidor:&nbsp;</b>{{ $filme->servidor }}<br>
+                        <span style="color: #008000;"><strong>{{ $filme->observacoes }}</strong></span>
                     </p>
-                    <p style="text-align: left;"><span id="more-2118"></span><strong><span style="color: #0000ff;">Download</span></strong>: Filme The Flash Dublado – Legendado – Em Ruby Marinho – The Flash é o filme solo do herói estrelado pelo ator Ezra Miller. Todo mundo já pensou em voltar no tempo para mudar alguma coisa que incomodou a vida, é por isso que Flash decide fazer o mesmo. Depois dos eventos de Liga da Justiça, Barry Allen decide viajar no tempo para evitar o assassinato de sua mãe, pelo qual seu pai foi injustamente condenado à cadeia. O que ele não imaginava seria que sua atitude teria consequências catastróficas para o universo. Ao voltar no tempo, Allen se vê em um efeito borboleta e começa a viajar entre mundos diferentes do seu. Para voltar para seu plano original, Flash contará com a ajuda de versões de heróis que já conheceu, incluindo versões do Batman que já são conhecidas (Michael Keaton e Ben Affleck), para evitar mais quebras entre universos e voltar ao normal. Baseado livremente na HQ “Flashpoint”</p>
+                    <p style="text-align: left;"><span id="more-2118"></span><strong><span style="color: #0000ff;">Sinopse</span></strong>: {{ $filme->sinopse }}</p>
                 </div>
             </div>
 
             <div class="links">
+                <h2>Downloads</h2>
+                @if($links->count() > 0)
+                @if($links->contains('idioma', 'A'))
                 <div class="box">
-                    <h2>Dual Áudio</h2>
+                    <h3>Dual Áudio</h3>
                     <table>
+                        @foreach($links as $link)
+                        @if($link->idioma == 'A')
                         <tr>
-                            <td>1080p</td>
-                            <td>MKV</td>
-                            <td>WEB-DL</td>
-                            <td>3.66 GB</td>
-                            <td><a href="#" target="_blank">Baixar</a></td>
+                            <td>{{ $link->descricao }}</td>
+                            <td>{{ $link->resolucao }}</td>
+                            <td>{{ $link->formato }}</td>
+                            <td>{{ $link->qualidade }}</td>
+                            <td>{{ $link->tamanho }}</td>
+                            <td><a href="{{ $link->link }}" target="_blank">Baixar</a></td>
                         </tr>
-                        <tr>
-                            <td>1080p</td>
-                            <td>MKV</td>
-                            <td>WEB-DL</td>
-                            <td>3.66 GB</td>
-                            <td><a href="#" target="_blank">Baixar</a></td>
-                        </tr>
+                        @endif
+                        @endforeach
                     </table>
+                </div>
+                @endif
+                @if($links->contains('idioma', 'D'))
+                <div class="box">
+                    <h3>Dublado</h3>
+                    <table>
+                        @foreach($links as $link)
+                        @if($link->idioma == 'D')
+                        <tr>
+                            <td>{{ $link->resolucao }}</td>
+                            <td>{{ $link->formato }}</td>
+                            <td>{{ $link->qualidade }}</td>
+                            <td>{{ $link->tamanho }}</td>
+                            <td><a href="{{ $link->link }}" target="_blank">Baixar</a></td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    </table>
+                </div>
+                @endif
+                @if($links->contains('idioma', 'L'))
+                <div class="box">
+                    <h3>Legendado</h3>
+                    <table>
+                        @foreach($links as $link)
+                        @if($link->idioma == 'L')
+                        <tr>
+                            <td>{{ $link->resolucao }}</td>
+                            <td>{{ $link->formato }}</td>
+                            <td>{{ $link->qualidade }}</td>
+                            <td>{{ $link->tamanho }}</td>
+                            <td><a href="{{ $link->link }}" target="_blank">Baixar</a></td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    </table>
+                </div>
+                @endif
+                @else
+                <span style="color: red; font-weight: bold;">Em Breve!</span>
+                @endif
+            </div>
+            @if($pessoas->count() > 0)
+            <div class="elenco">
+                <h2>Elenco</h2>
+                @foreach($pessoas as $pessoa)
+                <div class="box-pessoa">
+                    <a href="/pessoa/{{ $pessoa->urlamigavel }}"><img src="/img/pessoas/{{ $pessoa->foto }}" alt=""></a>
+                    <div>
+                        <a href="/pessoa/{{ $pessoa->urlamigavel }}"><span style="display: block; font-weight: bold;">{{ $pessoa->nome }}</span></a>
+                        <span style="font-size: 14px;">{{ $pessoa->personagem }}</span>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
+            <div class="seals bottom">
+                <div class="favorite">
+                    <i class="fa-solid fa-star"></i>
+                    <strong>Ctrl+D</strong>
+                    <span>para adicionar aos favoritos</span>
+                </div>
+                <div class="seed">
+                    <i class="fa-solid fa-right-left"></i>
+                    <strong>Ajude a semear</strong>
+                    <span>e agradeça :)</span>
+                </div>
+                <div class="text">
+                    <i class="fa-solid fa-signal"></i>
+                    <small> visualizações</small>
                 </div>
             </div>
         </div>
+        <div class="comments">
+            <div class="title">
+                <h4>{{ $comentarios->count() }} Comentário{{ ($comentarios->count() != 1) ? 's' : '' }}</h4>
+            </div>
+            @if(!Auth::check())
+                <a href="{{ route('social.login', ['provider' => 'github']) }}">Login</a>
+            @else
+                @if(Session::has('success'))
+                <div class="alert-success">{{ Session::get('success') }}</div>
+                @endif
+                @if(Session::has('fail'))
+                <div class="alert-danger">{{ Session::get('fail') }}</div>
+                @endif
+                <form class="comment-form" action="/enviar-comentario" method="POST">
+                    @csrf
+                    <span class="logado">Logado como&nbsp;<b>{{ Auth::getUser()->name }}</b></span>
+                    <a href="/logout">Sair</a>
+                    <textarea name="comentario" id="comentario"></textarea>
+                    <input type="hidden" name="hddIdFilme" id="hddIdFilme" value="{{ $filme->id }}">
+                    <input type="hidden" name="hddIdUser" id="hddIdUser" value="{{ Auth::getUser()->id }}">
+                    <span>Caracteres restantes: 255</span>
+                    <input type="submit" class="comment-submit" value="Comentar">
+                </form>
+            @endif
+            @foreach($comentarios as $comentario)
+            <div class="comment-box">
+                <img src="{{ $comentario->avatar }}" alt="">
+                <div class="comment-content">
+                    <div class="comment-owner">
+                        <h2>{{ $comentario->name }}</h2>
+                        <span>{{ date('d/m/Y H:i:s', strtotime($comentario->created_at)) }}</span>
+                    </div>
+                    <p class="comment-text">
+                        {{ $comentario->comentario }}
+                    </p>
+                    <div class="comment-footer">
+                        <a href="javascript:void(0);" onclick="like(<?= auth()->check(); ?>, {{ $comentario->id }}, {{ Auth::getUser() ? Auth::getUser()->id : 0 }});"><i class="fa-solid fa-thumbs-up"></i></a> {{ $comentario->likes }}
+                        <a href="javascript:void(0);" onclick="dislike();"><i class="fa-solid fa-thumbs-down"></i></a> {{ $comentario->dislikes }}
+                        <span>Responder</span>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
     </div>
+    <aside class="right">
+        <div class="main_title">
+            <h4>Filmes e Séries Relacionados</h4>
+        </div>
+        <div class="post_list">
+            <div class="row">
+                @foreach($relacionados as $rel)
+                <div class="post">
+                    <div class="inner">
+                        <div class="thumb">
+                            <a href="/{{ $rel->urlamigavel }}/">
+                                <div class="tags">
+                                    <div>{{ $rel->lancamento }}</div>
+                                    @if(str_contains($rel->tags, '1080p'))
+                                        <div>1080p</div>
+                                    @endif
+                                </div>
+                                <div class="img" style="background-image:url(/img/<?= $rel->foto; ?>);"></div>
+                            </a>
+                        </div>
+                        <div class="title">
+                            <a href="/{{ $rel->urlamigavel }}/">
+                                {{ $rel->titulo }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </aside>
 </div>
+<script>
+    window.onload = function() {
+        // Verifica se o usuário logado deu like em algum comentário
+        var logado = <?= auth()->check() ? auth()->user()->id : null; ?>;
+        alert(logado);
+    }
+</script>
 @endsection
