@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Cukamonga Site')
+@section('title', 'Cukamonga Filmes')
 
 @section('imports')
 <meta name="csrf-token" content="{{ csrf_token() }}">
